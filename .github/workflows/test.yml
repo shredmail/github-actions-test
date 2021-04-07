@@ -16,6 +16,6 @@ jobs:
       - uses: actions/github-script@v3
         id: context
         with:
-          script: console.log(context)
+          script: console.log(JSON.stringify(context))
 
 
