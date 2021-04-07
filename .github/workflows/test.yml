@@ -4,8 +4,11 @@ on:
     # Comment out this section to enable testing of all branches.
     branches:
       - master
+  pull_request:
+    paths-ignore: ['**.adoc']
+    branches-ignore: ['future-doc']
 jobs:
-  windows-build:
+  ubuntu-build:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
