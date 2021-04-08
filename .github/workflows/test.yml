@@ -8,10 +8,13 @@ on:
     paths-ignore: ['**.adoc']
     branches-ignore: ['future-doc']
 jobs:
-  ubuntu-build:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ${{matrix.os}}
     strategy:
       fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
     steps:
       - uses: actions/github-script@v3
         id: context
