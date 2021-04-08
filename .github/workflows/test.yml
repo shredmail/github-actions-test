@@ -30,6 +30,6 @@ jobs:
             console.log(`Branch: ${branch}`);
             let repo_full_name = pull_request ? pull_request.head.repo.full_name : repository.full_name;
             console.log(`Checking branch ${branch} from ${repo_full_name}`);
-            console.log(`OS: ${os.platform()}`);
+            console.log(`OS: ${os.type()}`);
 
 
