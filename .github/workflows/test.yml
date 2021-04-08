@@ -24,7 +24,7 @@ jobs:
           script: |
             const os = require('os');
             const { execSync } = require('child_process');
-            let ext = (os.type() === Windows_NT) ? '.bat' : '';
+            let ext = (os.type() === 'Windows_NT') ? '.bat' : '';
             let {repository, pull_request} = context.payload;
             let branch = pull_request ? pull_request.head.ref : repository.default_branch;
             console.log(`Branch: ${branch}`);
