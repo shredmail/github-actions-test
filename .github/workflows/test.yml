@@ -37,7 +37,7 @@ jobs:
             execSync(`.${sep}hello${suffix}`, {stdio: 'inherit'});
             await io.mkdirP('tmp');
             const response = await github.request(download_url);
-            fs.writeFileSync(`tmp${sep}hello${suffix}`, response.data);
+            await fs.promises.writeFile(`tmp${sep}hello${suffix}`, response.data);
             if (os.type() !== 'Windows_NT') { fs.chmodSync(`tmp${sep}hello${suffix}`, fs.constants.S_IXUSR) };
             execSync(`.${sep}tmp${sep}hello${suffix}`, {stdio: 'inherit'});
 
