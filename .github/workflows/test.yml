@@ -24,13 +24,13 @@ jobs:
           script: |
             const os = require('os');
             const { execSync } = require('child_process');
-            let ext = (os.type() === 'Windows_NT') ? '.bat' : '';
+            let executable = (os.type() === 'Windows_NT') ? '.\\hello.bat' : './hello';
             let {repository, pull_request} = context.payload;
             let branch = pull_request ? pull_request.head.ref : repository.default_branch;
             console.log(`Branch: ${branch}`);
             let repo_full_name = pull_request ? pull_request.head.repo.full_name : repository.full_name;
             console.log(`Checking branch ${branch} from ${repo_full_name}`);
             console.log(`OS: ${os.type()}`);
-            execSync(`./hello${ext}`, {stdio: 'inherit'})
+            execSync(executable, {stdio: 'inherit'})
 
 
