@@ -21,9 +21,10 @@ jobs:
         id: context2
         with:
           script: |
-            let {repository, pull_request} = context.payload
-            let branch = pull_request ? pull_request.head.ref : repository.default_branch
-            let repo_full_name = pull_request ? pull_request.head.repo.full_name : repository.full_name
-            console.log(`Checking branch ${branch} from ${repo_full_name}`)
+            let {repository, pull_request} = context.payload;
+            let branch = pull_request ? pull_request.head.ref : repository.default_branch;
+            console.log(`Branch: ${branch}`);
+            let repo_full_name = pull_request ? pull_request.head.repo.full_name : repository.full_name;
+            console.log(`Checking branch ${branch} from ${repo_full_name}`);
 
 
