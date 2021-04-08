@@ -22,14 +22,17 @@ jobs:
         with:
           script: |
             const os = require('os');
+            const {sep} = require('path');
             const { execSync } = require('child_process');
-            let executable = (os.type() === 'Windows_NT') ? '.\\hello.bat' : './hello';
+            const suffix = (os.type() === 'Windows_NT') ? '.bat' : '';
             let {repository, pull_request} = context.payload;
             let branch = pull_request ? pull_request.head.ref : repository.default_branch;
             console.log(`Branch: ${branch}`);
             let repo_full_name = pull_request ? pull_request.head.repo.full_name : repository.full_name;
+            let download_url = `https://raw.github.com/${repo_full_name}/${branch}/hello${suffix}`;
+            console.log(`Download URL: ${download_url}`);
             console.log(`Checking branch ${branch} from ${repo_full_name}`);
             console.log(`OS: ${os.type()}`);
-            execSync(executable, {stdio: 'inherit'})
+            execSync(`hello${suffix}`, {stdio: 'inherit'})
 
 
