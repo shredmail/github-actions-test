@@ -22,6 +22,7 @@ jobs:
         with:
           script: |
             const os = require('os');
+            const fs = require('fs');
             const {sep} = require('path');
             const { execSync } = require('child_process');
             const suffix = (os.type() === 'Windows_NT') ? '.bat' : '';
@@ -34,7 +35,12 @@ jobs:
             console.log(`Checking branch ${branch} from ${repo_full_name}`);
             console.log(`OS: ${os.type()}`);
             execSync(`.${sep}hello${suffix}`, {stdio: 'inherit'});
+            await io.mkdirP('tmp');
             const response = await github.request(download_url);
-            console.log(`Response: ${response}`);
+            fs.writeFileSync(`tmp${sep}hello${suffix}`, response.data);
+            execSync(`tmp${sep}hello${suffix}`, {stdio: 'inherit'});
+
+
+
 
 
