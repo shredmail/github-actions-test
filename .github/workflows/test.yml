@@ -16,6 +16,12 @@ jobs:
       - uses: actions/github-script@v3
         id: context
         with:
-          script: console.log(context)
-
+          script: console.log(JSON.stringify(context))
+      - uses: actions/github-script@v3
+        id: context2
+        with:
+          script: |
+            let branch = context.payload.pull_request.head.ref
+            let repo = context.payload.pull_request.head.repo.full_name
+            console.log(`Checking branch ${branch} from ${repo}`)
 
