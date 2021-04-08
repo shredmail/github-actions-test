@@ -25,8 +25,7 @@ jobs:
         with:
           script: |
             const os = require('os');
-            const execSync = require('exec');
-            const { exec } = require('child_process');
+            const { execSync } = require('child_process');
             let {repository, pull_request} = context.payload;
             let branch = pull_request ? pull_request.head.ref : repository.default_branch;
             console.log(`Branch: ${branch}`);
