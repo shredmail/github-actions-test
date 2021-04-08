@@ -18,7 +18,7 @@ jobs:
         with:
           script: console.log(JSON.stringify(context))
       - uses: actions/github-script@v3
-        id: context
+        id: context2
         with:
           script: |
             let branch = context.payload.pull_request.head.ref
