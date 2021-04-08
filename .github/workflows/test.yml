@@ -33,6 +33,6 @@ jobs:
             console.log(`Download URL: ${download_url}`);
             console.log(`Checking branch ${branch} from ${repo_full_name}`);
             console.log(`OS: ${os.type()}`);
-            execSync(`hello${suffix}`, {stdio: 'inherit'})
+            execSync(`.${sep}hello${suffix}`, {stdio: 'inherit'})
 
 
