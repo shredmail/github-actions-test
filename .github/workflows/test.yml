@@ -23,7 +23,7 @@ jobs:
           script: |
             const exec = require('util').promisify(require('child_process').exec);
             const downloadScript = require(`${process.env.GITHUB_WORKSPACE}/.github/workflows/util.js`);
-            const script = await downloadScript(github, io, context, "hello");
+            const script = await downloadScript(github, context, "hello", '~/fake-bin');
             let out1 = await exec(script);
             console.log(out1.stdout);
 

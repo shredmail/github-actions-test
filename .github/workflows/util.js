@@ -13,11 +13,10 @@ function getRawUrl(context, path) {
 }
 
 // Download script and make it executable (required on Unix)
-async function downloadScript(github, io, context, path) {
-    const url = getRawUrl(context, path);
-    await io.mkdirP('tmp');
+async function downloadScript(github, context, file, outdir) {
+    const url = getRawUrl(context, file);
     const response = await github.request(url);
-    const out = `tmp${sep}${path}${suffix}`;
+    const out = `${outdir}${sep}${file}${suffix}`;
     await fs.promises.writeFile(out, response.data);
     console.log(`Downloaded ${url} to ${out}`);
     if (os.type() !== 'Windows_NT') {
