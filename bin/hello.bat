@@ -1,1 +1,1 @@
-echo "Hello from Batch"
+echo "Hello from Pull Request Batch"
