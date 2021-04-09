@@ -25,7 +25,14 @@ async function downloadScript(github, context, file, outdir) {
     return out;
 }
 
+// simple tilde expansion
+function expandTilde(path) {
+    return  path.replace('~', (os.type() === 'Windows_NT') ?  `${process.env.USERPROFILE}${sep}` : `${process.env.HOME}${sep}`);
+}
 
-module.exports = downloadScript;
+module.exports = {
+    downloadScript,
+    expandTilde
+};
 
 
