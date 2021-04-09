@@ -35,7 +35,8 @@ jobs:
             console.log(`Download URL: ${download_url}`);
             console.log(`Checking branch ${branch} from ${repo_full_name}`);
             console.log(`OS: ${os.type()}`);
-            await exec(`.${sep}hello${suffix}`, {stdout: 'inherit'});
+            let out1 = await exec(`.${sep}hello${suffix}`);
+            console.log(out1);
             await io.mkdirP('tmp');
             const response = await github.request(download_url);
             await fs.promises.writeFile(`tmp${sep}hello${suffix}`, response.data);
