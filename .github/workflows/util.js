@@ -3,6 +3,10 @@ const fs = require('fs');
 const {sep} = require('path');
 const suffix = (os.type() === 'Windows_NT') ? '.bat' : '';
 
+// Get raw download URL for path in this repo or pull-request repo
+// (depending on context) automatically adds (.bat) extension to path
+// if running on windows to make Github actions steps cross platform
+// agnostic
 function getRawUrl(context, path) {
     let {repository, pull_request} = context.payload;
     let branch = pull_request ? pull_request.head.ref : repository.default_branch;
