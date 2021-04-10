@@ -8,12 +8,10 @@ const suffix = (os.type() === 'Windows_NT') ? '.bat' : '';
 // if running on windows to make Github actions steps cross platform
 // agnostic
 function getRawUrl(context, path) {
-    let {repository, pull_request} = context.payload;
-    let branch = pull_request ? pull_request.head.ref : repository.default_branch;
-    console.log(`Branch: ${branch}`);
-    let repo_full_name = pull_request ? pull_request.head.repo.full_name : repository.full_name;
-    let download_url = `https://raw.github.com/${repo_full_name}/${branch}/${path}${suffix}`;
-    return download_url;
+    const {repository, pull_request} = context.payload;
+    const branch = pull_request ? pull_request.head.ref : repository.default_branch;
+    const repo_full_name = pull_request ? pull_request.head.repo.full_name : repository.full_name;
+    return `https://raw.github.com/${repo_full_name}/${branch}/${path}${suffix}`;
 }
 
 // Download script and make it executable (required on Unix)
