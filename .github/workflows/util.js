@@ -1,6 +1,6 @@
 const os = require('os');
 const fs = require('fs');
-const {sep} = require('path');
+const {sep, join, basename} = require('path');
 const suffix = (os.type() === 'Windows_NT') ? '.bat' : '';
 
 // Get raw download URL for path in this repo or pull-request repo
@@ -18,7 +18,7 @@ function getRawUrl(context, path) {
 async function downloadScript(github, context, file, outdir) {
     const url = getRawUrl(context, file);
     const response = await github.request(url);
-    const out = `${outdir}${sep}${file}${suffix}`;
+    const out = join(outdir, basename(file) + suffix);
     await fs.promises.writeFile(out, response.data);
     console.log(`Downloaded ${url} to ${out}`);
     if (os.type() !== 'Windows_NT') {
