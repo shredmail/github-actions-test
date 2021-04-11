@@ -1,3 +1,5 @@
 #!/bin/sh
 
 echo "Hello from Pull Request Bash"
+echo "Environment"
+set
